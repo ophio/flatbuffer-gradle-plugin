@@ -1,0 +1,9 @@
+namespace com.ragdroid.yo.flatbuffertest.model;
+
+table Tag {
+ id:string;
+ name:string;
+ text:string;
+}
+
+file_extension "tag";

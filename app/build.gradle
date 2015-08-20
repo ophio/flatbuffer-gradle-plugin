@@ -1,0 +1,97 @@
+apply plugin: 'com.android.application'
+apply plugin: FlatBufferPlugin
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "com.ragdroid.yo.flatbuffertest"
+        minSdkVersion 19
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:22.2.1'
+}
+
+
+flatBuffer {
+
+    flatcPath = "${project.rootDir}"
+    inputFileName = "newschema.fbs"
+    outputDirPath = "${projectDir}/src/main/java"
+
+}
+
+class FlatBufferExtension {
+    String flatcPath
+    String inputFileName
+    String inputFilePath
+    String outputDirPath
+
+    FlatBufferExtension (Project project) {
+        inputFilePath = "${project.rootDir}";
+    }
+
+}
+
+class FlatBufferTask extends DefaultTask {
+
+
+    @TaskAction
+    def exec () {
+        getInputFile ()
+        print "${project.flatBuffer.flatcPath}/flatc -j -o ${project.flatBuffer.outputDirPath} ${getInputFileFullName()}"
+        "${project.flatBuffer.flatcPath}/flatc -j -o ${project.flatBuffer.outputDirPath} ${getInputFileFullName()}".execute ([], project.rootDir)
+    }
+
+    @InputFile
+    def getInputFile () {
+        new File (getInputFileFullName())
+    }
+
+    @Input
+    def getInputFileFullName () {
+        "${project.flatBuffer.inputFilePath}/${project.flatBuffer.inputFileName}"
+    }
+
+
+}
+
+import com.android.build.gradle.AppPlugin
+import com.android.build.gradle.LibraryPlugin
+
+class FlatBufferPlugin implements Plugin<Project> {
+
+    @Override
+    void apply(Project project) {
+        verifyRequiredPlugins project
+        FlatBufferExtension extension = new FlatBufferExtension(project)
+        project.extensions.add("flatBuffer", extension)
+        project.afterEvaluate {
+            project.tasks.find {
+                def pattern = ~/(?i)merge.*Assets/
+                pattern.matcher(it.name).matches()
+            }?.dependsOn project.tasks.create([name: "flatBufferJavaFileGeneration", type: FlatBufferTask])
+        }
+    }
+
+    // check if 'android' plugin is applied to the project
+    private static void verifyRequiredPlugins(Project project) {
+        if (!project.plugins.hasPlugin(AppPlugin) && !project.plugins.hasPlugin(LibraryPlugin)) {
+            throw new TaskInstantiationException("'android' or 'android-library' plugin has to be applied before")
+        }
+    }
+
+}
