@@ -1,7 +1,7 @@
 buildscript {
     repositories {
         jcenter()
-        mavenLocal()
+        maven {url "file://${projectDir}/../plugin/build/m2repo" }
     }
     dependencies {
         classpath 'in.co.ophio:flatbuffer:0.1.0'
@@ -28,6 +28,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
 }
 
 dependencies {
@@ -37,7 +41,6 @@ dependencies {
 
 
 flatbuffer {
-
     flatcPath = "${project.rootDir}"
     inputFileName = "newschema.fbs"
     outputDirPath = "${projectDir}/src/main/java"

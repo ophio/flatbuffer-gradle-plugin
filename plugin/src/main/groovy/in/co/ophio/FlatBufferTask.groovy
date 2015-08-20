@@ -16,8 +16,8 @@ class FlatBufferTask extends DefaultTask {
 
     @TaskAction
     def exec () {
-        print "${project.flatBuffer.flatcPath}/flatc -j -o ${getOutputDirectoryName()} ${getInputFileFullName()}"
-        "${project.flatBuffer.flatcPath}/flatc -j -o ${getOutputDirectoryName()} ${getInputFileFullName()}".execute ([], project.rootDir)
+        print "${project.flatbuffer.flatcPath}/flatc -j -o ${getOutputDirectoryName()} ${getInputFileFullName()}"
+        "${project.flatbuffer.flatcPath}/flatc -j -o ${getOutputDirectoryName()} ${getInputFileFullName()}".execute ([], project.rootDir)
     }
 
     @InputFile
@@ -31,11 +31,11 @@ class FlatBufferTask extends DefaultTask {
     }
 
     def getOutputDirectoryName() {
-        "${project.flatBuffer.outputDirPath}"
+        "${project.flatbuffer.outputDirPath}"
     }
 
     def getInputFileFullName () {
-        "${project.flatBuffer.inputFilePath}/${project.flatBuffer.inputFileName}"
+        "${project.flatbuffer.inputFilePath}/${project.flatbuffer.inputFileName}"
     }
 
 
