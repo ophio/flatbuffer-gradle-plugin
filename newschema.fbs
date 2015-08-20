@@ -4,6 +4,7 @@ table Tag {
  id:string;
  name:string;
  text:string;
+ title:string;
 }
 
 file_extension "tag";

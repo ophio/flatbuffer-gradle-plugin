@@ -42,6 +42,7 @@ class FlatBufferExtension {
 
     FlatBufferExtension (Project project) {
         inputFilePath = "${project.rootDir}";
+        flatcPath = "${project.rootDir}";
     }
 
 }
@@ -49,19 +50,34 @@ class FlatBufferExtension {
 class FlatBufferTask extends DefaultTask {
 
 
+    @InputFile
+    File inputFile
+
+    @OutputDirectory
+    File outputDir
+
     @TaskAction
     def exec () {
         getInputFile ()
-        print "${project.flatBuffer.flatcPath}/flatc -j -o ${project.flatBuffer.outputDirPath} ${getInputFileFullName()}"
-        "${project.flatBuffer.flatcPath}/flatc -j -o ${project.flatBuffer.outputDirPath} ${getInputFileFullName()}".execute ([], project.rootDir)
+        print "${project.flatBuffer.flatcPath}/flatc -j -o ${getOutputDirectoryName()} ${getInputFileFullName()}"
+        "${project.flatBuffer.flatcPath}/flatc -j -o ${getOutputDirectoryName()} ${getInputFileFullName()}".execute ([], project.rootDir)
+        getOutputDir ()
     }
 
     @InputFile
     def getInputFile () {
-        new File (getInputFileFullName())
+        inputFile = new File (getInputFileFullName())
     }
 
-    @Input
+    @OutputDirectory
+    def getOutputDir () {
+        outputDir = new File (getOutputDirectoryName())
+    }
+
+    def getOutputDirectoryName() {
+        "${project.flatBuffer.outputDirPath}"
+    }
+
     def getInputFileFullName () {
         "${project.flatBuffer.inputFilePath}/${project.flatBuffer.inputFileName}"
     }
@@ -81,7 +97,7 @@ class FlatBufferPlugin implements Plugin<Project> {
         project.extensions.add("flatBuffer", extension)
         project.afterEvaluate {
             project.tasks.find {
-                def pattern = ~/(?i)merge.*Assets/
+                def pattern = ~/(?i)pre.*Build/
                 pattern.matcher(it.name).matches()
             }?.dependsOn project.tasks.create([name: "flatBufferJavaFileGeneration", type: FlatBufferTask])
         }
