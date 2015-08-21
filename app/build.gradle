@@ -4,12 +4,12 @@ buildscript {
         maven {url "file://${projectDir}/../plugin/build/m2repo" }
     }
     dependencies {
-        classpath 'in.co.ophio:flatbuffer:0.1.0'
+        classpath 'in.co.ophio:flatbuffer-gradle-plugin:0.1.0'
     }
 }
 
 apply plugin: 'com.android.application'
-apply plugin: 'flatbuffer'
+apply plugin: 'flatbuffer-gradle-plugin'
 
 android {
     compileSdkVersion 22
