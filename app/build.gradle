@@ -1,7 +1,10 @@
 buildscript {
     repositories {
         jcenter()
-        maven {url "file://${projectDir}/../plugin/build/m2repo" }
+        //local
+//        maven {url "file://${projectDir}/../plugin/build/m2repo" }
+        //bintray
+        maven {url  "http://dl.bintray.com/ragdroid/maven"}
     }
     dependencies {
         classpath 'in.co.ophio:flatbuffer-gradle-plugin:0.1.0'

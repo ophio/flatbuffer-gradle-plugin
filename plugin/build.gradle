@@ -1,16 +1,15 @@
+apply plugin: "groovy"
+apply plugin: "maven"
+apply plugin: 'com.novoda.bintray-release'
+
 buildscript {
     repositories {
         jcenter()
     }
     dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.3.1'
+        classpath 'com.novoda:bintray-release:0.3.0'
     }
 }
-
-apply plugin: "groovy"
-apply plugin: "maven-publish"
-apply plugin: "maven"
-apply plugin: 'com.jfrog.bintray'
 
 archivesBaseName = "flatbuffer-gradle-plugin"
 group = 'in.co.ophio'
@@ -18,7 +17,7 @@ version = '0.1.0'
 
 //publishing
 def orgName = 'ragdroid'
-def versionControlUrl = 'https://github.com/bintray/gradle-bintray-plugin.git'
+def versionControlUrl = 'https://github.com/ophio/flatbuffer-gradle-plugin.git'
 def description = 'description'
 def versionName = version
 
@@ -45,46 +44,25 @@ uploadArchives {
     }
 }
 
-//bintray publishing
-publishing {
-    publications {
-        MyPublication(MavenPublication) {
-            from components.java
-            groupId group
-            artifactId archivesBaseName
-            version versionName
-        }
-    }
-}
-
-bintray {
+publish {
     def bintrayPropsFile = file('bintray.properties')
-
     if (bintrayPropsFile.exists()) {
         def bintrayProps = new Properties()
         bintrayProps.load(new FileInputStream(bintrayPropsFile))
-
-        def username = bintrayProps['userName']
-        def apikey = bintrayProps['apiKey']
-        user = username
-        key = apikey
-        publications = ['MyPublication']
+        bintrayUser = bintrayProps['userName']
+        bintrayKey = bintrayProps['apiKey']
+        userOrg = orgName
+        groupId = group
         dryRun = false
-        publish = true
-        pkg {
-            repo = 'maven'
-            name = archivesBaseName
-            userOrg = orgName
-            licenses = ['Apache-2.0']
-            vcsUrl = versionControlUrl
-            version {
-                name = versionName
-                desc = description
-                released  = new Date()
-            }
-        }
-    } else {
+        artifactId = archivesBaseName
+        publishVersion = versionName
+        desc = description
+        licences = ['MIT']
+        website = versionControlUrl
+    }  else {
         println 'please add bintray.properties file'
     }
+
 }
+
 
