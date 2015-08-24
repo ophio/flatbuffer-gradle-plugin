@@ -4,7 +4,7 @@ buildscript {
         //local
 //        maven {url "file://${projectDir}/../plugin/build/m2repo" }
         //bintray
-        maven {url  "http://dl.bintray.com/ragdroid/maven"}
+        maven {url  "http://dl.bintray.com/ophio/maven"}
     }
     dependencies {
         classpath 'in.co.ophio:flatbuffer-gradle-plugin:0.1.0'
