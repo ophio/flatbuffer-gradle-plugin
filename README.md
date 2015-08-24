@@ -48,4 +48,16 @@ flatbuffer {
 * `inputFileName`: name of your input schema file
 * `outputDirPath`: directory where you want your java classes to get generated.
 
+## Uploading the plugin:
 
+Upload on **maven** local :
+
+```
+cd plugin; ../gradlew clean uploadArchives
+```
+
+Upload on **bintray** (assuming you have a `bintray.properties` file in the `{rootDirectory}/plugin` directory) : 
+
+```
+cd plugin; ../gradlew clean build bintrayUpload
+```
