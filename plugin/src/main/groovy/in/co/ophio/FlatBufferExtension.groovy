@@ -4,7 +4,7 @@ import org.gradle.api.Project
 
 class FlatBufferExtension {
     String flatcPath
-    String inputFileName
+    List<String> inputFileNames
     String inputFilePath
     String outputDirPath
 

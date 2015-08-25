@@ -1,19 +1,19 @@
 apply plugin: "groovy"
 apply plugin: "maven"
-apply plugin: 'com.novoda.bintray-release'
+//apply plugin: 'com.novoda.bintray-release'
 
 buildscript {
     repositories {
         jcenter()
     }
-    dependencies {
-        classpath 'com.novoda:bintray-release:0.3.0'
-    }
+//    dependencies {
+//        classpath 'com.novoda:bintray-release:0.3.0'
+//    }
 }
 
 archivesBaseName = "flatbuffer-gradle-plugin"
 group = 'in.co.ophio'
-version = '0.1.0'
+version = '0.1.1'
 
 //publishing
 def versionControlUrl = 'https://github.com/ophio/flatbuffer-gradle-plugin.git'
@@ -43,25 +43,25 @@ uploadArchives {
     }
 }
 
-publish {
-    def bintrayPropsFile = file('bintray.properties')
-    if (bintrayPropsFile.exists()) {
-        def bintrayProps = new Properties()
-        bintrayProps.load(new FileInputStream(bintrayPropsFile))
-        bintrayUser = bintrayProps['userName']
-        userOrg = bintrayProps['userOrg']
-        bintrayKey = bintrayProps['apiKey']
-        groupId = group
-        dryRun = false
-        artifactId = archivesBaseName
-        publishVersion = versionName
-        desc = description
-        licences = ['MIT']
-        website = versionControlUrl
-    }  else {
-        println 'please add bintray.properties file'
-    }
-
-}
+//publish {
+//    def bintrayPropsFile = file('bintray.properties')
+//    if (bintrayPropsFile.exists()) {
+//        def bintrayProps = new Properties()
+//        bintrayProps.load(new FileInputStream(bintrayPropsFile))
+//        bintrayUser = bintrayProps['userName']
+//        userOrg = bintrayProps['userOrg']
+//        bintrayKey = bintrayProps['apiKey']
+//        groupId = group
+//        dryRun = false
+//        artifactId = archivesBaseName
+//        publishVersion = versionName
+//        desc = description
+//        licences = ['MIT']
+//        website = versionControlUrl
+//    }  else {
+//        println 'please add bintray.properties file'
+//    }
+//
+//}
 
 

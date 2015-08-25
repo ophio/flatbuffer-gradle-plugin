@@ -7,23 +7,23 @@ import org.gradle.api.tasks.TaskAction
 
 class FlatBufferTask extends DefaultTask {
 
-
-    @InputFile
-    File inputFile
-
     @OutputDirectory
     File outputDir
 
     @TaskAction
     def exec () {
-        print "${project.flatbuffer.flatcPath}/flatc -j -o ${getOutputDirectoryName()} ${getInputFileFullName()}"
-        "${project.flatbuffer.flatcPath}/flatc -j -o ${getOutputDirectoryName()} ${getInputFileFullName()}".execute ([], project.rootDir)
+        //print "${project.flatbuffer.flatcPath}/flatc -j -o ${getOutputDirectoryName()} ${getInputFileFullName()}"
+
+        println "starting executing"
+        def inputFilesFullNames = getInputFilesFullName()
+
+        for (inputFileNameFull in inputFilesFullNames) {
+            println "input file: " + inputFileNameFull;
+            "${project.flatbuffer.flatcPath}/flatc -j -o ${getOutputDirectoryName()} ${inputFileNameFull}".execute([], project.rootDir)
+        }
     }
 
-    @InputFile
-    def getInputFile () {
-        inputFile = new File (getInputFileFullName())
-    }
+
 
     @OutputDirectory
     def getOutputDir () {
@@ -34,8 +34,20 @@ class FlatBufferTask extends DefaultTask {
         "${project.flatbuffer.outputDirPath}"
     }
 
-    def getInputFileFullName () {
-        "${project.flatbuffer.inputFilePath}/${project.flatbuffer.inputFileName}"
+
+
+
+
+    def getInputFilesFullName() {
+        println "in getInputFilesFullName"
+        List<String> fileNames = project.flatbuffer.inputFileNames
+        println "t"
+        def inputFileNamesFull = new ArrayList<String>(fileNames.size());
+        for (name in fileNames) {
+            inputFileNamesFull =  "${project.flatbuffer.inputFilePath}${File.separator}${name}"
+            println inputFileNamesFull
+        }
+        return inputFileNamesFull;
     }
 
 

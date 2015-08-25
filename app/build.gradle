@@ -2,12 +2,12 @@ buildscript {
     repositories {
         jcenter()
         //local
-//        maven {url "file://${projectDir}/../plugin/build/m2repo" }
+        maven {url "file://${projectDir}/../plugin/build/m2repo" }
         //bintray
-        maven {url  "http://dl.bintray.com/ophio/maven"}
+//        maven {url  "http://dl.bintray.com/ophio/maven"}
     }
     dependencies {
-        classpath 'in.co.ophio:flatbuffer-gradle-plugin:0.1.0'
+        classpath 'in.co.ophio:flatbuffer-gradle-plugin:0.1.1'
     }
 }
 
@@ -45,7 +45,8 @@ dependencies {
 
 flatbuffer {
     flatcPath = "${project.rootDir}"
-    inputFileName = "newschema.fbs"
+//    inputFileName = "newschema.fbs"
+    inputFileNames = ["newschema.fbs"]
     outputDirPath = "${projectDir}/src/main/java"
 
 }
