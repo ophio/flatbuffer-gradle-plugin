@@ -1,7 +1,7 @@
-This grade plugin has been developed in order to make the usage of [`FlatBuffers`](https://github.com/google/flatbuffers)easier. 
+This grade plugin has been developed in order to make the usage of [`FlatBuffers`](https://github.com/google/flatbuffers)easier. Big thanks to [`@nabil_hachicha`](https://twitter.com/nabil_hachicha) for his [talk](https://skillsmatter.com/skillscasts/5984-build-your-gradle-plugin#video) at DroidCon London 2014.
 
 ## About
-FlatBuffers format has been shown to give better results than JSON parsing. For more details about it read this [article](https://code.facebook.com/posts/872547912839369/improving-facebook-s-performance-on-android-with-flatbuffers/). For a more detailed introduction on how to use `FlatBuffers` you can have a look at this [article](https://code.facebook.com/posts/872547912839369/improving-facebook-s-performance-on-android-with-flatbuffers/). 
+`FlatBuffers` format has been shown to give better results than JSON parsing. For more details about it read this [article](https://code.facebook.com/posts/872547912839369/improving-facebook-s-performance-on-android-with-flatbuffers/). For a more detailed introduction on how to use `FlatBuffers` you can have a look at this [article](https://code.facebook.com/posts/872547912839369/improving-facebook-s-performance-on-android-with-flatbuffers/). 
 
 You may notice that the java files generation task could be difficult if there are frequent changes to the schema while developing. A solution for continuous generation of the java classes is needed. We have integrated the continuos generation of java file with the grade plugin. Whenever you make any changes to the input schema file, updated files will be generated upon the next grade build.
 
@@ -15,7 +15,7 @@ You may notice that the java files generation task could be difficult if there a
 
 ## Usage
 
-[`flatbuffer-gradle-plugin`](plugin/) has been uploaded on bintray and can be used as follows:
+[`flatbuffer-gradle-plugin`](plugin/) has been uploaded on [bintray](https://bintray.com/ophio/maven/flatbuffer-gradle-plugin/_latestVersion) and can be used as follows:
 
 Gradle:
 
@@ -61,3 +61,14 @@ Upload on **bintray** (assuming you have a `bintray.properties` file in the `{ro
 ```
 cd plugin; ../gradlew clean build bintrayUpload
 ```
+Licence Information
+
+The MIT License (MIT)
+
+Copyright (c) 2015 Ophio
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

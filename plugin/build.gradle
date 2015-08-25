@@ -16,9 +16,8 @@ group = 'in.co.ophio'
 version = '0.1.0'
 
 //publishing
-def orgName = 'ragdroid'
 def versionControlUrl = 'https://github.com/ophio/flatbuffer-gradle-plugin.git'
-def description = 'description'
+def description = 'This grade plugin has been developed in order to make the usage of FlatBuffers easier.'
 def versionName = version
 
 repositories {
@@ -50,8 +49,8 @@ publish {
         def bintrayProps = new Properties()
         bintrayProps.load(new FileInputStream(bintrayPropsFile))
         bintrayUser = bintrayProps['userName']
+        userOrg = bintrayProps['userOrg']
         bintrayKey = bintrayProps['apiKey']
-        userOrg = orgName
         groupId = group
         dryRun = false
         artifactId = archivesBaseName
