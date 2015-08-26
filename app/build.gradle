@@ -46,7 +46,7 @@ dependencies {
 flatbuffer {
     flatcPath = "${project.rootDir}"
 //    inputFileName = "newschema.fbs"
-    inputFileNames = ["newschema.fbs"]
+    inputFileNames = ["newschema.fbs", "personschema.fbs"]
     outputDirPath = "${projectDir}/src/main/java"
 
 }

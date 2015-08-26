@@ -1,0 +1,17 @@
+namespace com.ragdroid.yo.flatbuffertest.model.person;
+
+table Person {
+  id: long;
+  fName:string;
+  lName:string;
+  email:string;
+  friends: [Person];
+  address: string;
+  bigaddress: string;
+}
+
+table PersonList {
+	people : [Person];
+}
+
+root_type PersonList;

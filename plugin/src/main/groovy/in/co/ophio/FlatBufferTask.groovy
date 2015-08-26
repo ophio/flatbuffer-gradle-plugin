@@ -2,10 +2,14 @@ package in.co.ophio
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.InputFile
+import org.gradle.api.tasks.InputFiles
 import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.TaskAction
 
 class FlatBufferTask extends DefaultTask {
+
+    @InputFiles
+    File[] inputFiles;
 
     @OutputDirectory
     File outputDir
@@ -36,16 +40,24 @@ class FlatBufferTask extends DefaultTask {
 
 
 
-
+    @InputFiles
+    def getInputFiles() {
+        def inputFileNames = getInputFilesFullName()
+        inputFiles = new File[inputFileNames.size()]
+        def i = 0
+        for (inputFileName in inputFileNames) {
+            inputFiles[i] = new File(inputFileName)
+            i = i + 1
+        }
+        inputFiles
+    }
 
     def getInputFilesFullName() {
-        println "in getInputFilesFullName"
         List<String> fileNames = project.flatbuffer.inputFileNames
-        println "t"
         def inputFileNamesFull = new ArrayList<String>(fileNames.size());
         for (name in fileNames) {
-            inputFileNamesFull =  "${project.flatbuffer.inputFilePath}${File.separator}${name}"
-            println inputFileNamesFull
+            def fullName = "${project.flatbuffer.inputFilePath}${File.separator}${name}"
+            inputFileNamesFull.add(fullName)
         }
         return inputFileNamesFull;
     }

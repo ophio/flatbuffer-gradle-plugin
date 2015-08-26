@@ -4,23 +4,8 @@ table Tag {
  id:string;
  name:string;
  text:string;
-
+ title:string;
 }
 
 file_extension "tag";
-
-table Person {
-	id: long;
-  fName:string;
-  lName:string;
-  email:string;
-  friends: [Person];
-
-}
-
-table PersonList {
-	people : [Person];
-}
-
-root_type PersonList;
 

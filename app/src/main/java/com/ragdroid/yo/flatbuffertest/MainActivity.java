@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.ragdroid.yo.flatbuffertest.model.Tag;
+import com.ragdroid.yo.flatbuffertest.model.person.Person;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -37,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         ByteBuffer byteBuffer = ByteBuffer.wrap(data);
-//        Tag tag = new Tag();
+        Tag tag = new Tag();
+        Person person = new Person();
     }
 
     @Override
