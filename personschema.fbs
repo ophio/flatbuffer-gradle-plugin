@@ -1,4 +1,4 @@
-namespace com.ragdroid.yo.flatbuffertest.model.person;
+namespace in.co.ophio.flatbuffertest.model.person;
 
 table Person {
   id: long;

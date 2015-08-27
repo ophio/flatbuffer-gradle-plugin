@@ -19,7 +19,7 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "com.ragdroid.yo.flatbuffertest"
+        applicationId "in.co.ophio.flatbuffertest"
         minSdkVersion 19
         targetSdkVersion 22
         versionCode 1

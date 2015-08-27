@@ -1,4 +1,4 @@
-namespace com.ragdroid.yo.flatbuffertest.model;
+namespace in.co.ophio.flatbuffertest.model;
 
 table Tag {
  id:string;

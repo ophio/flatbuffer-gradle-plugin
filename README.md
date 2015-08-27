@@ -25,7 +25,7 @@ Gradle:
 ```
 repositories {
     maven {
-        url  "http://dl.bintray.com/ragdroid/maven" 
+        url  "http://dl.bintray.com/ophio/maven" 
     }
 }
 dependencies {
