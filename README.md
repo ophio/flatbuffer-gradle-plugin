@@ -29,7 +29,7 @@ repositories {
     }
 }
 dependencies {
-        classpath 'in.co.ophio:flatbuffer-gradle-plugin:0.1.0'
+        classpath 'in.co.ophio:flatbuffer-gradle-plugin:0.1.1'
     }
     
 ```
