@@ -3,7 +3,9 @@ This grade plugin has been developed in order to make the usage of [`FlatBuffers
 ## About
 `FlatBuffers` format has been shown to give better results than JSON parsing. For more details about it read this [article](https://code.facebook.com/posts/872547912839369/improving-facebook-s-performance-on-android-with-flatbuffers/). For a more detailed introduction on how to use `FlatBuffers` you can have a look at this [article](http://frogermcs.github.io/flatbuffers-in-android-introdution/). 
 
-You may notice that the java files generation task could be difficult if there are frequent changes to the schema while developing. A solution for continuous generation of the java classes is needed. We have integrated the continuos generation of java file with the grade plugin. Whenever you make any changes to the input schema file, updated files will be generated upon the next grade build.
+You may notice that the java files generation task could be difficult if there are frequent changes to the schema while developing. A solution for continuous generation of the java classes is needed. We have integrated the continuos generation of java file with the grade plugin. `FlatBuffer` java classes are generated on every build. 
+
+Note: We chose not to use incremental build for this plugin as the exact location of output directories is not known due to name space declarations in the schema files.
 
 ## Setup
 

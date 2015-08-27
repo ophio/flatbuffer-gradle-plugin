@@ -18,27 +18,22 @@ public final class Tag extends Table {
   public ByteBuffer nameAsByteBuffer() { return __vector_as_bytebuffer(6, 1); }
   public String text() { int o = __offset(8); return o != 0 ? __string(o + bb_pos) : null; }
   public ByteBuffer textAsByteBuffer() { return __vector_as_bytebuffer(8, 1); }
-  public String title() { int o = __offset(10); return o != 0 ? __string(o + bb_pos) : null; }
-  public ByteBuffer titleAsByteBuffer() { return __vector_as_bytebuffer(10, 1); }
 
   public static int createTag(FlatBufferBuilder builder,
       int id,
       int name,
-      int text,
-      int title) {
-    builder.startObject(4);
-    Tag.addTitle(builder, title);
+      int text) {
+    builder.startObject(3);
     Tag.addText(builder, text);
     Tag.addName(builder, name);
     Tag.addId(builder, id);
     return Tag.endTag(builder);
   }
 
-  public static void startTag(FlatBufferBuilder builder) { builder.startObject(4); }
+  public static void startTag(FlatBufferBuilder builder) { builder.startObject(3); }
   public static void addId(FlatBufferBuilder builder, int idOffset) { builder.addOffset(0, idOffset, 0); }
   public static void addName(FlatBufferBuilder builder, int nameOffset) { builder.addOffset(1, nameOffset, 0); }
   public static void addText(FlatBufferBuilder builder, int textOffset) { builder.addOffset(2, textOffset, 0); }
-  public static void addTitle(FlatBufferBuilder builder, int titleOffset) { builder.addOffset(3, titleOffset, 0); }
   public static int endTag(FlatBufferBuilder builder) {
     int o = builder.endObject();
     return o;
