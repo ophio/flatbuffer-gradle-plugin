@@ -1,4 +1,4 @@
-package com.ragdroid.yo.flatbuffertest;
+package in.co.ophio.flatbuffertest;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

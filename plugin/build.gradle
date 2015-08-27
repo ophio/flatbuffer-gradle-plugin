@@ -13,7 +13,7 @@ buildscript {
 
 archivesBaseName = "flatbuffer-gradle-plugin"
 group = 'in.co.ophio'
-version = '0.1.0'
+version = '0.1.1'
 
 //publishing
 def versionControlUrl = 'https://github.com/ophio/flatbuffer-gradle-plugin.git'

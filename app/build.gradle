@@ -2,12 +2,12 @@ buildscript {
     repositories {
         jcenter()
         //local
-//        maven {url "file://${projectDir}/../plugin/build/m2repo" }
+        maven {url "file://${projectDir}/../plugin/build/m2repo" }
         //bintray
-        maven {url  "http://dl.bintray.com/ophio/maven"}
+//        maven {url  "http://dl.bintray.com/ophio/maven"}
     }
     dependencies {
-        classpath 'in.co.ophio:flatbuffer-gradle-plugin:0.1.0'
+        classpath 'in.co.ophio:flatbuffer-gradle-plugin:0.1.1'
     }
 }
 
@@ -19,7 +19,7 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "com.ragdroid.yo.flatbuffertest"
+        applicationId "in.co.ophio.flatbuffertest"
         minSdkVersion 19
         targetSdkVersion 22
         versionCode 1
@@ -45,7 +45,7 @@ dependencies {
 
 flatbuffer {
     flatcPath = "${project.rootDir}"
-    inputFileName = "newschema.fbs"
+    inputFileNames = ["newschema.fbs", "personschema.fbs"]
     outputDirPath = "${projectDir}/src/main/java"
 
 }

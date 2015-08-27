@@ -50,3 +50,6 @@ proguard/
 # Crashlytics
 **/res/values/com_crashlytics*.xml
 core-app/src/main/assets/crashlytics-build.properties
+
+#flatc executable
+flatc

@@ -1,41 +1,37 @@
 package in.co.ophio
 
 import org.gradle.api.DefaultTask
-import org.gradle.api.tasks.InputFile
-import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.TaskAction
 
 class FlatBufferTask extends DefaultTask {
 
+    File[] inputFiles;
 
-    @InputFile
-    File inputFile
-
-    @OutputDirectory
     File outputDir
 
     @TaskAction
     def exec () {
-        print "${project.flatbuffer.flatcPath}/flatc -j -o ${getOutputDirectoryName()} ${getInputFileFullName()}"
-        "${project.flatbuffer.flatcPath}/flatc -j -o ${getOutputDirectoryName()} ${getInputFileFullName()}".execute ([], project.rootDir)
-    }
+        //print "${project.flatbuffer.flatcPath}/flatc -j -o ${getOutputDirectoryName()} ${getInputFileFullName()}"
 
-    @InputFile
-    def getInputFile () {
-        inputFile = new File (getInputFileFullName())
-    }
+        def inputFilesFullNames = getInputFilesFullName()
 
-    @OutputDirectory
-    def getOutputDir () {
-        outputDir = new File (getOutputDirectoryName())
+        for (inputFileNameFull in inputFilesFullNames) {
+            "${project.flatbuffer.flatcPath}/flatc -j -o ${getOutputDirectoryName()} ${inputFileNameFull}".execute([], project.rootDir)
+        }
     }
 
     def getOutputDirectoryName() {
         "${project.flatbuffer.outputDirPath}"
     }
 
-    def getInputFileFullName () {
-        "${project.flatbuffer.inputFilePath}/${project.flatbuffer.inputFileName}"
+    def getInputFilesFullName() {
+        List<String> fileNames = project.flatbuffer.inputFileNames
+        def inputFileNamesFull = new ArrayList<String>(fileNames.size());
+        for (name in fileNames) {
+            def fullName = "${project.flatbuffer.inputFilePath}${File.separator}${name}"
+            inputFileNamesFull.add(fullName)
+        }
+        return inputFileNamesFull;
     }
 
 

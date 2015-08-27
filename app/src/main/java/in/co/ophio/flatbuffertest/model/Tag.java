@@ -1,6 +1,6 @@
 // automatically generated, do not modify
 
-package com.ragdroid.yo.flatbuffertest.model;
+package in.co.ophio.flatbuffertest.model;
 
 import java.nio.*;
 import java.lang.*;
